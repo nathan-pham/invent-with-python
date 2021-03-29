@@ -1,5 +1,5 @@
 # Import packages
-import pygame, sys
+import pygame, random, sys
 from pygame.locals import * 
 
 # Initialize Pygame
@@ -22,14 +22,50 @@ display = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption(WINDOW_NAME)
 clock = pygame.time.Clock()
 
-display.fill(colors["white"])
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
-pygame.draw.line(display, colors["blue"], (60, 60), (120, 60), 4)
-pygame.draw.circle(display, colors["red"], (300, 50), 20, 0)
-pygame.draw.rect(display, colors["green"], (200, 150, 100, 50))
+    def add(self, vector):
+        self.x += vector.x
+        self.y += vector.y
+
+    def mult(self, m):
+        self.x *= m
+        self.y *= m
+    
+    def repr(self):
+        return (self.x, self.y)
+
+class Cat:
+    sprite = pygame.image.load("assets/cat.png")
+    vel = Vector(random.randint(1, 5), random.randint(1, 5))
+
+    def __init__(self, x=100, y=100):
+        rect = self.sprite.get_rect()
+        self.width = rect.width
+        self.height = rect.height
+        self.pos = Vector(x, y)
+
+    def update(self):
+        self.pos.add(self.vel)
+        if self.pos.x > WINDOW_SIZE[0] - self.width or self.pos.x < 0:
+            self.vel.x *= -1
+        if self.pos.y > WINDOW_SIZE[1] - self.height or self.pos.y < 0:
+            self.vel.y *= -1
+
+    def render(self, ctx):
+        ctx.blit(self.sprite, self.pos.repr())
+
+cat = Cat(100, 100)
 
 # Game loop
 while True:
+    display.fill(colors["white"])
+    cat.update()
+    cat.render(display)
+
     # Loop through events
     for event in pygame.event.get():
         # Close window

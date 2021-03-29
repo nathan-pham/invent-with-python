@@ -124,4 +124,18 @@ create rectangles, circles, lines, pixels, and other basic geometry
 `pygame.draw.circle(surface, color, center_point, radius, width)`: creates a circle with a center (remember radius is 0.5 * diameter)  
 `pygame.draw.ellipse(surface, color, bounding_rectangle, width)`: specify a square & pygame will draw an ellipse inside the square  
 `pygame.draw.rect(surface, color, rect_tuple, width)`: rect_tuple is the (x, y, width, height)  
+```py
+display.fill(colors["white"])
 
+pygame.draw.line(display, colors["blue"], (60, 60), (120, 60), 4)
+pygame.draw.circle(display, colors["red"], (300, 50), 20, 0)
+pygame.draw.rect(display, colors["green"], (200, 150, 100, 50))
+```
+
+## pygame.display.update
+renders surface to the computer  
+add images to surfaces with "blit"  
+
+### Animation
+draw a slightly different picture every frame to give the illusion of movement  
+`pygame.image.load` loads a sprite  
