@@ -1,5 +1,4 @@
-import pygame
-import random, sys
+import pygame, sys
 from pygame.locals import *
 from config import *
 from colors import *
@@ -31,31 +30,3 @@ while True:
 
     pygame.display.update()
     clock.tick(FPS)
-def generate_board(width, height):
-    possible_icons = []
-    icons_needed = int(BOARD_WIDTH * BOARD_HEIGHT / 2)
-
-    for color in ALL_COLORS:
-        for shape in ALL_SHAPES:
-            possible_icons.append((shape, color))
-
-    possible_icons = possible_icons[:icons_needed] * 2
-    random.shuffle(possible_icons)
-
-    game_board = []
-    for x in range(BOARD_WIDTH):
-        column = []
-        for y in range(BOARD_HEIGHT):
-            column.append(possible_icons[0])
-            del possible_icons[0]
-
-        game_board.append(column)
-
-    return game_board
-
-def cleared_game(cards):
-    for card in cards:
-        if False in card:
-            return False
-
-    return True
