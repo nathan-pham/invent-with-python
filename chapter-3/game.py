@@ -2,8 +2,6 @@ import pygame, random
 from config import *
 from colors import *
 
-print(X_MARGIN, Y_MARGIN)
-
 def scale_coordinates(x, y):
     scaled_x = x * (BOX_SIZE + GAP_SIZE) + X_MARGIN
     scaled_y = y * (BOX_SIZE + GAP_SIZE) + Y_MARGIN
