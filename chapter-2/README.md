@@ -213,7 +213,7 @@ while True:
 
 ### Fonts
 `pygame.font.Font(path, size)`: registers a new font at a certain size in pixels  
-`FONT.render(text, _, text_color, background_color)`: creates a text surface  
+`FONT.render(text, anti_aliasing, text_color, background_color)`: creates a text surface  
 ```py
 # Register font
 FONT = pygame.font.Font("assets/SF-Pro.ttf", 32)
@@ -225,4 +225,28 @@ text_rect.center = (200, 150)
 while True:
     display.fill(colors["white"])
     display.blit(text_surface, text_rect)
+```
+
+### Anti-Aliasing
+aliasized: retains blocky nature  
+anti-aliasized: adds pixels & uses more computing power to make lines appear smooth  
+![anti-aliasizing](https://inventwithpython.com/pygame/chapter2_files/image013.png)
+
+### Playing Sounds
+`pygame.mixer.Sound(music_path)`: load a song into an object that can be stopped & played  
+`pygame.mixer.music.load(music_path)`: load a song into mixer  
+`pygame.mixer.music.play(i, start)`: play mixer song `i` number of times from a starting point (i = -1 means loop forever)
+```py
+import pygame, time
+
+# Game sound effects
+sound = pygame.mixer.Sound("path.wav")
+sound.play()
+time.sleep(1)
+sound.stop()
+
+# Background music
+pygame.mixer.music.load("background-music.mp4")
+pygame.mixer.music.play(-1, 0.0)
+pygame.mixer.music.stop()
 ```
