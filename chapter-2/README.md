@@ -138,8 +138,8 @@ add images to surfaces with "blit"
 
 ### Animation
 draw a slightly different picture every frame to give the illusion of movement  
-`pygame.image.load` loads a sprite  
-`image.get_rect()` returns bounds of an image   
+`pygame.image.load(sprite_path)`: loads a sprite  
+`image.get_rect()`: returns bounds of an image   
 ```py
 # Import packages
 import pygame, random, sys
@@ -209,4 +209,20 @@ while True:
 
     pygame.display.update()
     clock.tick(FPS)
+```
+
+### Fonts
+`pygame.font.Font(path, size)`: registers a new font at a certain size in pixels  
+`FONT.render(text, _, text_color, background_color)`: creates a text surface  
+```py
+# Register font
+FONT = pygame.font.Font("assets/SF-Pro.ttf", 32)
+text_surface = FONT.render("Hello World", True, colors["blue"], colors["green"])
+text_rect = text_surface.get_rect()
+text_rect.center = (200, 150)
+
+# Game loop
+while True:
+    display.fill(colors["white"])
+    display.blit(text_surface, text_rect)
 ```
